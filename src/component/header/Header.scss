@@ -1,0 +1,10 @@
+@import '../../styles/variables';
+
+header {
+  padding: 0 $padding-side;
+  width: 100%;
+  box-sizing: border-box;
+  #header-logo {
+    max-width: 280px;
+  }
+}

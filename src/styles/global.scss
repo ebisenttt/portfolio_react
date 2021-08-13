@@ -1,0 +1,81 @@
+@import "variables";
+
+$padding-side: 0%;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1 {
+  font-size: 48px;
+}
+
+h2 {
+  font-size: 32px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+p {
+  font-size: 16px;
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  background-color: $blue;
+  height: 120px;
+  width: 100vw;
+  padding: 0 $padding-side;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: $white;
+  a {
+    color: $white;
+    cursor: pointer;
+  }
+  #header-menu{
+    color: $white;
+    display: flex;
+    gap: 32px;
+  }
+}
+
+
+.works-container {
+  margin: 24px;
+  display: flex;
+  justify-content: center;
+  .work {
+    width: 320px;
+    .work-img {
+      width: 320px;
+      height: 400px;
+      margin-bottom: 8px;
+    }
+    .work-title {
+      color: $blue;
+      text-align: center;
+    }
+  }
+  
+}
+
+footer {
+  height: 120px;
+  color: $white;
+  background-color: $blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
