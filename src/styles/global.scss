@@ -1,7 +1,5 @@
 @import "variables";
 
-$padding-side: 0%;
-
 * {
   margin: 0;
   padding: 0;
@@ -31,27 +29,6 @@ a {
   text-decoration: none;
 }
 
-header {
-  background-color: $blue;
-  height: 120px;
-  width: 100vw;
-  padding: 0 $padding-side;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: $white;
-  a {
-    color: $white;
-    cursor: pointer;
-  }
-  #header-menu{
-    color: $white;
-    display: flex;
-    gap: 32px;
-  }
-}
-
-
 .works-container {
   margin: 24px;
   display: flex;
@@ -68,7 +45,6 @@ header {
       text-align: center;
     }
   }
-  
 }
 
 footer {

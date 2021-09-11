@@ -1,9 +1,24 @@
-@import '../../styles/variables';
+@import "../../styles/variables";
 
 header {
+  background-color: $blue;
+  height: 120px;
+  width: 100vw;
   padding: 0 $padding-side;
-  width: 100%;
+  display: flex;
   box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+  color: $white;
+  a {
+    color: $white;
+    cursor: pointer;
+  }
+  #header-menu {
+    color: $white;
+    display: flex;
+    gap: 32px;
+  }
   #header-logo {
     max-width: 280px;
   }
