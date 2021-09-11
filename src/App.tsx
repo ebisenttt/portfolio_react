@@ -1,12 +1,13 @@
-import React, {JSXElementConstructor, ReactElement, ReactEventHandler, ReactNode, useState} from 'react';
+import React, { useState } from 'react';
 import './App.scss';
 import './styles/global.scss'
+import { MediaQueryProvider } from 'context/MediaQuery';
 import Header from './component/header/Header';
 import img_profile from "./image/profile.png";
 import img_hero from './image/hero.png';
 import Section from './component/section/Section';
 import Work from './component/work/Work';
-import {Button} from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 import emailjs from 'emailjs-com';
 import Footer from './component/footer/Footer';
@@ -25,31 +26,31 @@ const Hero = () => (
 const Works = () => {
   type WorkPropsType = React.ComponentProps<typeof Work>;
   const workList: Array<WorkPropsType> = [
-    {title: "Classroom File Poster", img: "", src: ""}
+    { title: "Classroom File Poster", img: "", src: "" }
   ]
   return (
     <Section id="works" title="Works">
       <div className="works-container">
-      {
-        workList.map(e => (
-          <Work title={e.title} img={e.img} src={e.src} />
-        ))
-      }
+        {
+          workList.map(e => (
+            <Work title={e.title} img={e.img} src={e.src} />
+          ))
+        }
       </div>
     </Section>
   )
 }
 
 const Profile = () => {
-  const text: string = 
+  const text: string =
     "プログラミング初学者です。"
     + "数学科の教員として働きながら，転職も視野に入れてプログラミングを勉強しています。"
     + "Progate，ドットインストールでHTML, CSS，Java Scriptを学習し，"
     + "UdemyやQiitaを活用してGAS，jQuery，React.js，"
     + "Ruby on RailsチュートリアルでRuby on Railsを学習しました。"
     + "まだまだ勉強中のことはたくさんありますが，知的好奇心は高く，"
-    +"新しいものを取り入れようとする姿勢を崩さないと自負しています。";
-  
+    + "新しいものを取り入れようとする姿勢を崩さないと自負しています。";
+
   return (
     <Section id="profile" title="Profile" sidePadding='200px'>
       <div id="profile-img-container">
@@ -63,8 +64,8 @@ const Profile = () => {
 }
 
 const Skills = () => {
-  const skillList: {[key: string]: string[]} = {
-    "言語":[
+  const skillList: { [key: string]: string[] } = {
+    "言語": [
       "HTML",
       "CSS",
       "php",
@@ -90,12 +91,12 @@ const Skills = () => {
           <div className="skill-title">
             <h3>{key}</h3>
           </div>
-            <ul className="skill-list">
-              {skillList[key].map(e => (
-                <li key={e}>{e}</li>
-              ))}
-            </ul>
-          </div>
+          <ul className="skill-list">
+            {skillList[key].map(e => (
+              <li key={e}>{e}</li>
+            ))}
+          </ul>
+        </div>
       ))}
     </Section>
   );
@@ -108,20 +109,20 @@ const Contact = () => {
     name: string
   }
 
-  const [inputValue, setInputValue] = useState<{[key: string]: {[key: string]: string　| boolean}}>({
-    name: {value: "", error: false},
-    email: {value: "", error: false},
-    subject: {value: "", error: false},
-    content: {value: "", error: false}
+  const [inputValue, setInputValue] = useState<{ [key: string]: { [key: string]: string | boolean } }>({
+    name: { value: "", error: false },
+    email: { value: "", error: false },
+    subject: { value: "", error: false },
+    content: { value: "", error: false }
   })
 
   const [successModalOpened, setSuccessModalOpened] = useState<boolean>(false);
   const [failedModalOpened, setFailedModalOpened] = useState<boolean>(false);
 
   const inputList: inputPropsType[] = [
-    {label: "お名前", type: "text", name: "name"},
-    {label: "メールアドレス", type: "email", name: "email"},
-    {label: "件名", type: "text", name: "subject"}
+    { label: "お名前", type: "text", name: "name" },
+    { label: "メールアドレス", type: "email", name: "email" },
+    { label: "件名", type: "text", name: "subject" }
   ]
 
   const SendButton = () => (
@@ -131,7 +132,7 @@ const Contact = () => {
       disableElevation
       type="submit"
     >
-      <SendIcon fontSize="small"/>
+      <SendIcon fontSize="small" />
       送信
     </Button>
   )
@@ -142,7 +143,7 @@ const Contact = () => {
     const name = target.name;
     setInputValue(() => {
       const preError = inputValue[name].error;
-      return {...inputValue, [name]: {value: target.value, error: preError}}
+      return { ...inputValue, [name]: { value: target.value, error: preError } }
     });
   }
 
@@ -150,13 +151,13 @@ const Contact = () => {
     e.preventDefault();
     const preState = inputValue;
     Object.keys(preState).map(key => {
-      if(preState[key].value === ""){
+      if (preState[key].value === "") {
         preState[key].error = true;
       } else {
         preState[key].error = false;
       }
     })
-    if(!Object.keys(preState).some(key => preState[key].error === true)){
+    if (!Object.keys(preState).some(key => preState[key].error === true)) {
       emailjs.sendForm('ebisenttt_portfolio', 'ebisenttt_portfolio', e.currentTarget, "user_EUvU2fDmeATUM8Z2jmd1P")
         .then((result) => {
           openSuccessModal();
@@ -167,7 +168,7 @@ const Contact = () => {
         });
       openSuccessModal();
     }
-    return setInputValue({...preState});
+    return setInputValue({ ...preState });
   }
 
   const openSuccessModal = () => {
@@ -219,7 +220,7 @@ const Contact = () => {
     )
   }
 
-  return(
+  return (
     <Section id="contact" title="Contact">
       <form onSubmit={handleOnSubmit}>
         {inputList.map(e => {
@@ -227,7 +228,7 @@ const Contact = () => {
           return (
             <label>
               {e.label}[必須]
-              <input type={e.type} name={e.name} onChange={handleOnChange}/>
+              <input type={e.type} name={e.name} onChange={handleOnChange} />
               {isError && <div id={`error-message-${e.name}`} className="error-message">{e.label}の入力は必須です</div>}
             </label>
           )
@@ -246,16 +247,16 @@ const Contact = () => {
 
 
 const App = () => {
-  return(
-    <>
-      <Header/>
-      <Hero/>
+  return (
+    <MediaQueryProvider>
+      <Header />
+      <Hero />
       <Works />
       <Profile />
       <Skills />
       <Contact />
-      <Footer/>
-    </>
+      <Footer />
+    </MediaQueryProvider>
   )
 }
 
