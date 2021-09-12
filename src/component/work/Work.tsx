@@ -10,7 +10,7 @@ const Work = (props: Props) => (
   <div className="work">
     <a href={props.src}>
       <img className="work-img" src={props.img} />
-      <h3 className="work-title">{props.title}</h3>
+      <p className="work-title">{props.title}</p>
     </a>
   </div>
 )

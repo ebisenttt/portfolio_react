@@ -6,7 +6,7 @@
   #hero-img {
     width: 100%;
   }
-  #hero-text-container{
+  #hero-text-container {
     color: $white;
     position: absolute;
     text-align: center;
@@ -18,24 +18,51 @@
   }
 }
 
-#profile-img-container {
-  #profile-img {
-    max-width: 160px;
-    max-height: 160px;
+.works-container {
+  margin: 24px;
+  display: flex;
+  justify-content: center;
+  .work {
+    width: 320px;
+    max-width: 50vw;
+
+    .work-img {
+      width: 100%;
+      height: 400px;
+      margin-bottom: 8px;
+    }
+    .work-title {
+      color: $blue;
+      text-align: center;
+    }
   }
 }
 
-#profile-text {
-  color: $black;
-  margin-left: 32px;
-  line-height: 200%;
+#profile {
+  display: flex;
+  justify-content: space-between;
+  #profile-img-container {
+    #profile-img {
+      max-width: 160px;
+      max-height: 160px;
+    }
+    // margin-right: $padding-side-for-pc;
+  }
+  #profile-text-container {
+    width: 50%;
+    min-width: $min-width-for-mobile;
+    #profile-text {
+      color: $black;
+      line-height: 200%;
+    }
+  }
 }
 
-#skills{
-  .section-content-container{
-    display: flex;
-    justify-content: space-between;
-    .skill-container{
+#skills {
+  .section-content-container {
+    // display: flex;
+    // justify-content: space-between;
+    .skill-container {
       color: $black;
       display: flex;
       flex-direction: column;
@@ -46,43 +73,51 @@
   }
 }
 
-form{
-  color: $black;
-  label {
-    display: block;
-    input, textarea {
+.form-container {
+  width: 50%;
+  min-width: 300px;
+  form {
+    color: $black;
+    label {
       display: block;
-      width: 400px;
-      border: 1px solid $black;
-      border-radius: 0.3em;
-      padding: 0.5em;
-    }
-    input, textarea, .error-message {
-      margin-bottom: 8px;
+      input,
+      textarea {
+        width: 100%;
+        box-sizing: border-box;
+        display: block;
+        border: 1px solid $black;
+        border-radius: 0.3em;
+        padding: 0.5em;
+      }
+      input,
+      textarea,
+      .error-message {
+        margin-bottom: 8px;
+      }
+      .error-message {
+        font-size: 4px;
+      }
+      textarea {
+        resize: none;
+        height: 240px;
+      }
     }
     .error-message {
-      font-size: 4px;
+      color: red;
     }
-    textarea {
-      resize: none;
-      height: 240px;
-    }
-  }
-  .error-message {
-    color: red;
-  }
-  .MuiButton-root{
-    color: $white;
-    background-color: $blue;
-    &:hover {
-      transition: 0.2s;
+    .MuiButton-root {
+      color: $white;
       background-color: $blue;
-      opacity: 0.8;
+      &:hover {
+        transition: 0.2s;
+        background-color: $blue;
+        opacity: 0.8;
+      }
     }
-  }
-  .MuiSvgIcon-root {
-    color: $white;
-    margin-right: 8px;
+    .MuiSvgIcon-root {
+      color: $white;
+      margin-right: 8px;
+    }
   }
 }
 

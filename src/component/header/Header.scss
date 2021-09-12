@@ -3,12 +3,12 @@
 header {
   background-color: $blue;
   height: 120px;
-  width: 100vw;
-  padding: 0 $padding-side;
+  width: 100%;
+
   display: flex;
+  justify-content: space-between;
   box-sizing: border-box;
   align-items: center;
-  justify-content: space-between;
   color: $white;
   a {
     color: $white;
@@ -19,7 +19,28 @@ header {
     display: flex;
     gap: 32px;
   }
-  #header-logo {
+  img {
     max-width: 280px;
+  }
+}
+
+.header-for-pc {
+  padding: 0 $padding-side-for-pc;
+}
+
+.header-for-mobile {
+  height: 50px;
+  padding: 0 $padding-side-for-mobile;
+  .hamberger-menu-icon {
+    color: $white;
+    font-size: large;
+  }
+  a {
+    // position: absolute;
+    margin-right: 50%;
+    transform: translate(50%, 0);
+  }
+  img {
+    height: 40px;
   }
 }

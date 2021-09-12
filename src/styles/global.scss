@@ -29,23 +29,7 @@ a {
   text-decoration: none;
 }
 
-.works-container {
-  margin: 24px;
-  display: flex;
-  justify-content: center;
-  .work {
-    width: 320px;
-    .work-img {
-      width: 320px;
-      height: 400px;
-      margin-bottom: 8px;
-    }
-    .work-title {
-      color: $blue;
-      text-align: center;
-    }
-  }
-}
+
 
 footer {
   height: 120px;

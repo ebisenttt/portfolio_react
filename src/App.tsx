@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.scss';
 import './styles/global.scss'
-import { MediaQueryProvider } from 'context/MediaQuery';
+import { MediaQueryProvider, useDeviceType } from 'context/MediaQuery';
 import Header from './component/header/Header';
 import img_profile from "./image/profile.png";
 import img_hero from './image/hero.png';
@@ -42,17 +42,19 @@ const Works = () => {
 }
 
 const Profile = () => {
+  const { isMobile } = useDeviceType();
   const text: string =
     "プログラミング初学者です。"
-    + "数学科の教員として働きながら，転職も視野に入れてプログラミングを勉強しています。"
+    + "数学科の教員として働きながら，転職も視野に入れてWeb開発を中心にプログラミングを勉強しています。"
     + "Progate，ドットインストールでHTML, CSS，Java Scriptを学習し，"
     + "UdemyやQiitaを活用してGAS，jQuery，React.js，"
     + "Ruby on RailsチュートリアルでRuby on Railsを学習しました。"
     + "まだまだ勉強中のことはたくさんありますが，知的好奇心は高く，"
     + "新しいものを取り入れようとする姿勢を崩さないと自負しています。";
 
+  const className = isMobile ? 'profile-for-mobile' : 'profle-for-pc';
   return (
-    <Section id="profile" title="Profile" sidePadding='200px'>
+    <Section id="profile" title="Profile">
       <div id="profile-img-container">
         <img id="profile-img" src={img_profile} />
       </div>
@@ -222,24 +224,26 @@ const Contact = () => {
 
   return (
     <Section id="contact" title="Contact">
-      <form onSubmit={handleOnSubmit}>
-        {inputList.map(e => {
-          const isError = inputValue[e.name].error;
-          return (
-            <label>
-              {e.label}[必須]
-              <input type={e.type} name={e.name} onChange={handleOnChange} />
-              {isError && <div id={`error-message-${e.name}`} className="error-message">{e.label}の入力は必須です</div>}
-            </label>
-          )
-        })}
-        <label>本文[必須]
-          <textarea name="content" onChange={handleOnChange}></textarea>
-          {inputValue.content.error && <div id='error-message-content' className="error-message">本文の入力は必須です</div>}
-        </label>
-        <SendButton />
-      </form>
-      <ContactModal />
+      <div className='form-container'>
+        <form onSubmit={handleOnSubmit}>
+          {inputList.map(e => {
+            const isError = inputValue[e.name].error;
+            return (
+              <label>
+                {e.label}[必須]
+                <input type={e.type} name={e.name} onChange={handleOnChange} />
+                {isError && <div id={`error-message-${e.name}`} className="error-message">{e.label}の入力は必須です</div>}
+              </label>
+            )
+          })}
+          <label>本文[必須]
+            <textarea name="content" onChange={handleOnChange}></textarea>
+            {inputValue.content.error && <div id='error-message-content' className="error-message">本文の入力は必須です</div>}
+          </label>
+          <SendButton />
+        </form>
+        <ContactModal />
+      </div>
     </Section>
   )
 }
