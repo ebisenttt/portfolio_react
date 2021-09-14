@@ -9,7 +9,7 @@ type Props = {
 const Work = (props: Props) => (
   <div className="work">
     <a href={props.src}>
-      <img className="work-img" src={props.img} alt={props.title} />
+      <img className="work-img" src={props.img} />
       <p className="work-title">{props.title}</p>
     </a>
   </div>
