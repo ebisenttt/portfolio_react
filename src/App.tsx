@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './App.scss';
 import './styles/global.scss'
-import { MediaQueryProvider, useDeviceType } from 'context/MediaQuery';
+import { MediaQueryProvider } from 'context/MediaQuery';
 import Header from './component/header/Header';
-import img_profile from "./image/profile.png";
+import img_profile from "./image/profile.svg";
 import img_hero from './image/hero.png';
 import Section from './component/section/Section';
 import Work from './component/work/Work';
@@ -15,7 +15,10 @@ import TransitionsModal from 'component/modal';
 
 const Hero = () => (
   <div id="hero">
-    <img id="hero-img" src={img_hero}></img>
+    <img id="hero-img"
+      src={img_hero}
+      alt=''
+    ></img>
     <div id="hero-text-container">
       <h1 id="hero-title">ebisenttt</h1>
       <p id="hero-description">Web Engineering Learner</p>
@@ -33,7 +36,12 @@ const Works = () => {
       <div className="works-container">
         {
           workList.map(e => (
-            <Work title={e.title} img={e.img} src={e.src} />
+            <Work
+              key={e.title}
+              title={e.title}
+              img={e.img}
+              src={e.src}
+            />
           ))
         }
       </div>
@@ -42,7 +50,6 @@ const Works = () => {
 }
 
 const Profile = () => {
-  const { isMobile } = useDeviceType();
   const text: string =
     "プログラミング初学者です。"
     + "数学科の教員として働きながら，転職も視野に入れてWeb開発を中心にプログラミングを勉強しています。"
@@ -52,11 +59,10 @@ const Profile = () => {
     + "まだまだ勉強中のことはたくさんありますが，知的好奇心は高く，"
     + "新しいものを取り入れようとする姿勢を崩さないと自負しています。";
 
-  const className = isMobile ? 'profile-for-mobile' : 'profle-for-pc';
   return (
     <Section id="profile" title="Profile">
       <div id="profile-img-container">
-        <img id="profile-img" src={img_profile} />
+        <img id="profile-img" src={img_profile} alt='' />
       </div>
       <div id="profile-text-container">
         <p id="profile-text">{text}</p>
@@ -89,13 +95,13 @@ const Skills = () => {
   return (
     <Section id="skills" title="Skills">
       {Object.keys(skillList).map(key => (
-        <div className="skill-container">
+        <div key={key} className="skill-container">
           <div className="skill-title">
             <h3>{key}</h3>
           </div>
           <ul className="skill-list">
-            {skillList[key].map(e => (
-              <li key={e}>{e}</li>
+            {skillList[key].map((element, index) => (
+              <li key={element}>{element}</li>
             ))}
           </ul>
         </div>
@@ -152,7 +158,7 @@ const Contact = () => {
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const preState = inputValue;
-    Object.keys(preState).map(key => {
+    Object.keys(preState).forEach(key => {
       if (preState[key].value === "") {
         preState[key].error = true;
       } else {
@@ -229,7 +235,7 @@ const Contact = () => {
           {inputList.map(e => {
             const isError = inputValue[e.name].error;
             return (
-              <label>
+              <label key={e.name}>
                 {e.label}[必須]
                 <input type={e.type} name={e.name} onChange={handleOnChange} />
                 {isError && <div id={`error-message-${e.name}`} className="error-message">{e.label}の入力は必須です</div>}

@@ -24,8 +24,6 @@
   justify-content: center;
   .work {
     width: 320px;
-    max-width: 50vw;
-
     .work-img {
       width: 100%;
       height: 400px;
@@ -43,8 +41,8 @@
   justify-content: space-between;
   #profile-img-container {
     #profile-img {
-      max-width: 160px;
-      max-height: 160px;
+      width: 160px;
+      height: 160px;
     }
     // margin-right: $padding-side-for-pc;
   }

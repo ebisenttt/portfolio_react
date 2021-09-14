@@ -5,7 +5,7 @@ import logo_for_pc from './logo_for_pc.png'
 import { Link as Scroll } from 'react-scroll';
 import { useDeviceType } from 'context/MediaQuery';
 import { HambergerMenu } from './HambergerMenu';
-import { LinkedCamera } from '@material-ui/icons';
+import MenuItem from '@material-ui/core/MenuItem';
 
 type Link = {
   to: string,
@@ -28,13 +28,16 @@ function Header() {
       <header className="header-for-mobile">
         <HambergerMenu>
           {linkArr.map(e => (
-            <Scroll
-              to={e.to}
-              smooth={true}
-              duration={600}
-            >
-              <p>{e.value}</p>
-            </Scroll>
+            <MenuItem>
+              <Scroll
+                key={`header-link-${e.to}`}
+                to={e.to}
+                smooth={true}
+                duration={600}
+              >
+                <p>{e.value}</p>
+              </Scroll>
+            </MenuItem>
           ))}
         </HambergerMenu>
         <a><img src={logo_for_mobile} /></a>
@@ -48,6 +51,7 @@ function Header() {
         <div id="header-menu">
           {linkArr.map(e => (
             <Scroll
+              key={`header-link-${e.to}`}
               to={e.to}
               smooth={true}
               duration={600}
