@@ -14,7 +14,7 @@ import Footer from './component/footer/Footer';
 import TransitionsModal from 'component/modal';
 import img_ebisen_blog from './image/works/ebisen_blog.png';
 import SkillImg from './image/skills';
-import Figma from './image/skills/figma.svg';
+import * as dotenv from 'dotenv';
 
 const Hero = () => (
   <div id="hero">
@@ -139,6 +139,10 @@ const Contact = () => {
 
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    dotenv.config();
+    const userId = (process.env.REACT_APP_EMAILJS_USER_ID as string);
+    const serviceId = (process.env.REACT_APP_EMAILJS_SERVICE_ID as string);
+    const templateId = (process.env.REACT_APP_EMAILJS_TEMPLATE_ID as string);
     const preState = inputValue;
     Object.keys(preState).map(key => {
       if (preState[key].value === "") {
@@ -148,7 +152,7 @@ const Contact = () => {
       }
     })
     if (!Object.keys(preState).some(key => preState[key].error === true)) {
-      emailjs.sendForm('ebisenttt_portfolio', 'ebisenttt_portfolio', e.currentTarget, "user_EUvU2fDmeATUM8Z2jmd1P")
+      emailjs.sendForm(serviceId, templateId, e.currentTarget, userId)
         .then((result) => {
           openSuccessModal();
           console.log(result, "Success to send contact form.");
