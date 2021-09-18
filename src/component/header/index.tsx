@@ -11,8 +11,6 @@ export type Link = {
   value: string
 }
 
-
-
 function Header() {
   const linkArr: Array<Link> = [
     { to: "works", value: "Works" },
@@ -26,17 +24,18 @@ function Header() {
     return (
       <header className="header-for-mobile">
         <HambergerMenu links={linkArr} />
-        <a><img src={logo_for_mobile} /></a>
+        <a><img src={logo_for_mobile} alt='A logo of this web site.' /></a>
       </header>
     )
 
   } else {
     return (
       <header className="header-for-pc">
-        <a><img src={logo_for_pc} /></a>
+        <a><img src={logo_for_pc} alt='A logo of this web site.' /></a>
         <div id="header-menu">
-          {linkArr.map(e => (
+          {linkArr.map((e, index) => (
             <Scroll
+              key={index}
               to={e.to}
               smooth={true}
               duration={600}

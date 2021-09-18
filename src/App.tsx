@@ -1,24 +1,23 @@
 import React, { useState } from 'react';
 import './App.scss';
 import './styles/global.scss'
-import { MediaQueryProvider, useDeviceType } from 'context/MediaQuery';
-import Header from './component/header/Header';
+import { MediaQueryProvider } from 'context/MediaQuery';
+import Header from './component/header';
 import img_profile from "./image/profile.png";
 import img_hero from './image/hero.png';
 import Section from './component/section/Section';
 import Work from './component/work/Work';
-import { Button } from '@material-ui/core';
+import { Button, TextField } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 import emailjs from 'emailjs-com';
 import Footer from './component/footer/Footer';
 import TransitionsModal from 'component/modal';
 import img_ebisen_blog from './image/works/ebisen_blog.png';
 import SkillImg from './image/skills';
-import * as dotenv from 'dotenv';
 
 const Hero = () => (
   <div id="hero">
-    <img id="hero-img" src={img_hero}></img>
+    <img id="hero-img" src={img_hero} alt=''></img>
     <div id="hero-text-container">
       <h1 id="hero-title">ebisenttt</h1>
       <p id="hero-description">Web Engineering Learner</p>
@@ -35,8 +34,13 @@ const Works = () => {
     <Section id="works" title="Works">
       <div className="works-container">
         {
-          workList.map(e => (
-            <Work title={e.title} img={e.img} src={e.src} />
+          workList.map((e, index) => (
+            <Work
+              key={index}
+              title={e.title}
+              img={e.img}
+              src={e.src}
+            />
           ))
         }
       </div>
@@ -45,7 +49,6 @@ const Works = () => {
 }
 
 const Profile = () => {
-  const { isMobile } = useDeviceType();
   const text: string =
     "プログラミング初学者です。"
     + "数学科の教員として働きながら，転職も視野に入れてWeb開発を中心にプログラミングを勉強しています。"
@@ -55,11 +58,10 @@ const Profile = () => {
     + "まだまだ勉強中のことはたくさんありますが，知的好奇心は高く，"
     + "新しいものを取り入れようとする姿勢を崩さないと自負しています。";
 
-  const className = isMobile ? 'profile-for-mobile' : 'profle-for-pc';
   return (
     <Section id="profile" title="Profile">
       <div id="profile-img-container">
-        <img id="profile-img" src={img_profile} />
+        <img id="profile-img" src={img_profile} alt='profile icon' />
       </div>
       <div id="profile-text-container">
         <p id="profile-text">{text}</p>
@@ -82,8 +84,9 @@ const Skills = () => {
 
   return (
     <Section id='skills' title='Skills'>
-      {Object.keys(SkillImg).map(key => (
+      {Object.keys(SkillImg).map((key, index) => (
         <SkillContainer
+          key={index}
           img={SkillImg[key].require}
           name={SkillImg[key].name}
         />
@@ -96,30 +99,29 @@ const Contact = () => {
   type inputPropsType = {
     label: string,
     type: string,
-    name: string
+    name: string,
+    rows: number
   }
+  const inputList: inputPropsType[] = [
+    { label: "お名前", type: "text", name: "name", rows: 1 },
+    { label: "メールアドレス", type: "email", name: "email", rows: 1 },
+    { label: "件名", type: "text", name: "subject", rows: 1 },
+    { label: '本文', type: 'text', name: 'content', rows: 5 }
+  ]
 
-  const [inputValue, setInputValue] = useState<{ [key: string]: { [key: string]: string | boolean } }>({
-    name: { value: "", error: false },
-    email: { value: "", error: false },
-    subject: { value: "", error: false },
-    content: { value: "", error: false }
+  const [inputValue, setInputValue] = useState<{ [key: string]: { value: string } }>({
+    name: { value: "" },
+    email: { value: "" },
+    subject: { value: "" },
+    content: { value: "" }
   })
-
   const [successModalOpened, setSuccessModalOpened] = useState<boolean>(false);
   const [failedModalOpened, setFailedModalOpened] = useState<boolean>(false);
-
-  const inputList: inputPropsType[] = [
-    { label: "お名前", type: "text", name: "name" },
-    { label: "メールアドレス", type: "email", name: "email" },
-    { label: "件名", type: "text", name: "subject" }
-  ]
 
   const SendButton = () => (
     <Button
       variant="contained"
       size="medium"
-      disableElevation
       type="submit"
     >
       <SendIcon fontSize="small" />
@@ -131,55 +133,31 @@ const Contact = () => {
     e.preventDefault();
     const target = e.target;
     const name = target.name;
-    setInputValue(() => {
-      const preError = inputValue[name].error;
-      return { ...inputValue, [name]: { value: target.value, error: preError } }
-    });
+    setInputValue({ ...inputValue, [name]: { value: target.value } });
   }
 
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dotenv.config();
     const userId = (process.env.REACT_APP_EMAILJS_USER_ID as string);
     const serviceId = (process.env.REACT_APP_EMAILJS_SERVICE_ID as string);
     const templateId = (process.env.REACT_APP_EMAILJS_TEMPLATE_ID as string);
-    const preState = inputValue;
-    Object.keys(preState).map(key => {
-      if (preState[key].value === "") {
-        preState[key].error = true;
-      } else {
-        preState[key].error = false;
-      }
-    })
-    if (!Object.keys(preState).some(key => preState[key].error === true)) {
-      emailjs.sendForm(serviceId, templateId, e.currentTarget, userId)
-        .then((result) => {
-          openSuccessModal();
-          console.log(result, "Success to send contact form.");
-        }, (error) => {
-          openFailedModal();
-          console.log(error, "Failed to send contact form.");
-        });
-      openSuccessModal();
-    }
-    return setInputValue({ ...preState });
+    emailjs.sendForm(serviceId, templateId, e.currentTarget, userId)
+      .then((result) => {
+        openSuccessModal();
+        console.log(result, "Success to send contact form.");
+      }, (error) => {
+        openFailedModal();
+        console.log(error, "Failed to send contact form.");
+      });
   }
 
-  const openSuccessModal = () => {
-    setSuccessModalOpened(true);
-  }
+  const openSuccessModal = () => setSuccessModalOpened(true);
 
-  const openFailedModal = () => {
-    setFailedModalOpened(true);
-  }
+  const openFailedModal = () => setFailedModalOpened(true);
 
-  const closeSuccessModal = () => {
-    setSuccessModalOpened(false);
-  }
+  const closeSuccessModal = () => setSuccessModalOpened(false);
 
-  const closeFailedModal = () => {
-    setFailedModalOpened(false);
-  }
+  const closeFailedModal = () => setFailedModalOpened(false);
 
   const successTitle: string = "送信完了";
   const failedTitle: string = "送信失敗";
@@ -205,37 +183,30 @@ const Contact = () => {
     />
   );
 
-  const ContactModal = () => {
-    return (
-      <>
-        <SuccessModal />
-        <FailedModal />
-      </>
-    )
-  }
-
   return (
-    <Section id="contact" title="Contact">
-      <div className='form-container'>
-        <form onSubmit={handleOnSubmit}>
-          {inputList.map(e => {
-            const isError = inputValue[e.name].error;
-            return (
-              <label>
-                {e.label}[必須]
-                <input type={e.type} name={e.name} onChange={handleOnChange} />
-                {isError && <div id={`error-message-${e.name}`} className="error-message">{e.label}の入力は必須です</div>}
-              </label>
-            )
-          })}
-          <label>本文[必須]
-            <textarea name="content" onChange={handleOnChange}></textarea>
-            {inputValue.content.error && <div id='error-message-content' className="error-message">本文の入力は必須です</div>}
-          </label>
-          <SendButton />
-        </form>
-        <ContactModal />
-      </div>
+    <Section id='contact' title='Contact'>
+      <form onSubmit={handleOnSubmit}>
+        {inputList.map((e, index) => {
+          return (
+            <TextField
+              key={index}
+              label={e.label}
+              name={e.name}
+              type={e.type}
+              variant='outlined'
+              margin='normal'
+              rows={e.rows}
+              required
+              fullWidth
+              multiline
+              onChange={handleOnChange}
+            />
+          )
+        })}
+        <SendButton />
+      </form>
+      <SuccessModal />
+      <FailedModal />
     </Section>
   )
 }

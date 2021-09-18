@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Button, Menu, MenuItem } from '@material-ui/core';
-import { Link } from './Header';
+import { Link } from '.';
 import { Link as Scroll } from 'react-scroll';
 
 type Props = {
