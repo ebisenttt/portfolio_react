@@ -12,6 +12,9 @@ import SendIcon from '@material-ui/icons/Send';
 import emailjs from 'emailjs-com';
 import Footer from './component/footer/Footer';
 import TransitionsModal from 'component/modal';
+import img_ebisen_blog from './image/works/ebisen_blog.png';
+import SkillImg from './image/skills';
+import Figma from './image/skills/figma.svg';
 
 const Hero = () => (
   <div id="hero">
@@ -26,7 +29,7 @@ const Hero = () => (
 const Works = () => {
   type WorkPropsType = React.ComponentProps<typeof Work>;
   const workList: Array<WorkPropsType> = [
-    { title: "Classroom File Poster", img: "", src: "" }
+    { title: "ebisen blog", img: img_ebisen_blog, src: "https://ebisenttt.github.io/blog/" }
   ]
   return (
     <Section id="works" title="Works">
@@ -66,42 +69,27 @@ const Profile = () => {
 }
 
 const Skills = () => {
-  const skillList: { [key: string]: string[] } = {
-    "言語": [
-      "HTML",
-      "CSS",
-      "php",
-      "Google Apps Script",
-      "C++",
-      "VBA"
-    ],
-    "ライブラリ": [
-      "React.JS"
-    ],
-    "フレームワーク": [
-      "Ruby on Rails",
-    ],
-    "その他ツール": [
-      "VS Code",
-      "Figma"
-    ]
-  };
+  type Props = {
+    img: string,
+    name: string
+  }
+  const SkillContainer = (props: Props) => (
+    <div className='skill-container'>
+      <img src={props.img} alt='' />
+      <p>{props.name}</p>
+    </div>
+  )
+
   return (
-    <Section id="skills" title="Skills">
-      {Object.keys(skillList).map(key => (
-        <div className="skill-container">
-          <div className="skill-title">
-            <h3>{key}</h3>
-          </div>
-          <ul className="skill-list">
-            {skillList[key].map(e => (
-              <li key={e}>{e}</li>
-            ))}
-          </ul>
-        </div>
+    <Section id='skills' title='Skills'>
+      {Object.keys(SkillImg).map(key => (
+        <SkillContainer
+          img={SkillImg[key].require}
+          name={SkillImg[key].name}
+        />
       ))}
     </Section>
-  );
+  )
 }
 
 const Contact = () => {

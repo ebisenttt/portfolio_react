@@ -1,0 +1,17 @@
+@import "../../styles/variables";
+
+.footer-for-mobile {
+  height: 50px;
+}
+
+.footer-for-pc {
+  height: 120px;
+}
+
+footer {
+  color: $white;
+  background-color: $blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

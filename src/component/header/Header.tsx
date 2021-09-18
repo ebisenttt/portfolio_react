@@ -5,38 +5,27 @@ import logo_for_pc from './logo_for_pc.png'
 import { Link as Scroll } from 'react-scroll';
 import { useDeviceType } from 'context/MediaQuery';
 import { HambergerMenu } from './HambergerMenu';
-import { LinkedCamera } from '@material-ui/icons';
 
-type Link = {
+export type Link = {
   to: string,
   value: string
 }
 
-const linkArr: Array<Link> = [
-  { to: "works", value: "Works" },
-  { to: "profile", value: "Profile" },
-  { to: "skills", value: "Skills" },
-  { to: "contact", value: "Contact" }
-];
+
 
 function Header() {
-
+  const linkArr: Array<Link> = [
+    { to: "works", value: "Works" },
+    { to: "profile", value: "Profile" },
+    { to: "skills", value: "Skills" },
+    { to: "contact", value: "Contact" }
+  ];
   const { isMobile } = useDeviceType();
 
   if (isMobile) {
     return (
       <header className="header-for-mobile">
-        <HambergerMenu>
-          {linkArr.map(e => (
-            <Scroll
-              to={e.to}
-              smooth={true}
-              duration={600}
-            >
-              <p>{e.value}</p>
-            </Scroll>
-          ))}
-        </HambergerMenu>
+        <HambergerMenu links={linkArr} />
         <a><img src={logo_for_mobile} /></a>
       </header>
     )

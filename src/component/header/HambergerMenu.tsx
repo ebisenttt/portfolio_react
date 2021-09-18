@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Button, Menu, MenuItem } from '@material-ui/core';
+import { Link } from './Header';
+import { Link as Scroll } from 'react-scroll';
 
-export const HambergerMenu: React.FC = ({ children }) => {
+type Props = {
+  links: Link[]
+}
+
+export const HambergerMenu = (props: Props) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -25,8 +31,20 @@ export const HambergerMenu: React.FC = ({ children }) => {
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleClose}
+        className='Menu'
       >
-        {children}
+        {props.links.map((e, index) => (
+          <MenuItem key={index}>
+            <Scroll
+              to={e.to}
+              smooth={true}
+              duration={600}
+              onClick={handleClose}
+            >
+              <p>{e.value}</p>
+            </Scroll>
+          </MenuItem>
+        ))}
       </Menu>
     </>
   )

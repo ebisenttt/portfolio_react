@@ -10,6 +10,9 @@ const Work = (props: Props) => (
   <div className="work">
     <a href={props.src}>
       <img className="work-img" src={props.img} />
+      {/* <div className='work-img'>
+        {props.img}
+      </div> */}
       <p className="work-title">{props.title}</p>
     </a>
   </div>
