@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import Amplify from 'aws-amplify';
+import { AmplifyAuthenticator, AmplifySignUp, AmplifySignOut } from '@aws-amplify/ui-react';
+import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import './App.scss';
 import './styles/global.scss'
 import { MediaQueryProvider } from 'context/MediaQuery';
