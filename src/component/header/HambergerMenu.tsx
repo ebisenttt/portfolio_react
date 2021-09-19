@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Button, Menu, MenuItem } from '@material-ui/core';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Link } from '.';
 import { Link as Scroll } from 'react-scroll';
+import './HambergerMenu.scss';
 
 type Props = {
   links: Link[]
@@ -16,6 +18,14 @@ export const HambergerMenu = (props: Props) => {
   const handleClose = () => {
     setAnchorEl(null);
   }
+
+  const useStyles = makeStyles((theme: Theme) => createStyles({
+    menuPaper: {
+      color: '#333333',
+      backgroundColor: '#fff7f7'
+    }
+  }));
+
 
   return (
     <>
@@ -31,7 +41,7 @@ export const HambergerMenu = (props: Props) => {
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleClose}
-        className='Menu'
+        classes={{ paper: useStyles().menuPaper }}
       >
         {props.links.map((e, index) => (
           <MenuItem key={index}>

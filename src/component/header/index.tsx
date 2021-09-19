@@ -1,5 +1,5 @@
 import React from 'react';
-import './Header.scss';
+import './style.scss';
 import logo_for_mobile from "./logo_for_mobile.png";
 import logo_for_pc from './logo_for_pc.png'
 import { Link as Scroll } from 'react-scroll';
@@ -19,6 +19,7 @@ function Header() {
     { to: "contact", value: "Contact" }
   ];
   const { isMobile } = useDeviceType();
+
 
   if (isMobile) {
     return (
