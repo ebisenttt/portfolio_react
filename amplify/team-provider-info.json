@@ -10,6 +10,11 @@
       "StackName": "amplify-portfolio-dev-141829",
       "StackId": "arn:aws:cloudformation:ap-northeast-1:407427505097:stack/amplify-portfolio-dev-141829/09948090-1909-11ec-b326-065be1cbeaa1",
       "AmplifyAppId": "dszwcv1fndndd"
+    },
+    "categories": {
+      "auth": {
+        "portfolio11f79524": {}
+      }
     }
   }
 }
