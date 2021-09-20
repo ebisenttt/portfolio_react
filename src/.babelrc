@@ -1,0 +1,7 @@
+{
+  "presets": ["env"],
+  "plugins": [
+    "wildcard",
+    "@babel/plugin-transform-typescript"
+  ]
+}

@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "portfolio3c65915d_identitypool_3c65915d",
+    "identityPoolName": "portfolio11f79524_identitypool_11f79524",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "portfo3c65915d",
-    "userPoolName": "portfolio3c65915d_userpool_3c65915d",
+    "resourceNameTruncated": "portfo11f79524",
+    "userPoolName": "portfolio11f79524_userpool_11f79524",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -20,10 +20,7 @@
     "requiredAttributes": [
         "email"
     ],
-    "aliasAttributes": [
-        "email",
-        "preferred_username"
-    ],
+    "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [
@@ -32,10 +29,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "portfo3c65915d_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "portfo11f79524_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "3c65915d",
-    "resourceName": "portfolio3c65915d",
+    "sharedId": "11f79524",
+    "resourceName": "portfolio11f79524",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
