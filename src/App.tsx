@@ -29,8 +29,18 @@ const Hero = () => (
 const Works = () => {
   type WorkPropsType = React.ComponentProps<typeof Work>;
   const workList: Array<WorkPropsType> = [
-    { title: "ebisen blog", img: img_ebisen_blog, src: "https://ebisenttt.github.io/blog/" },
-    { title: "circular_permutaiton", img: img_p5js, src: "https://editor.p5js.org/ebisenttt/collections/g4mGulDBY"},
+    { 
+      title: "ebisen blog",
+      img: img_ebisen_blog,
+      src: "https://ebisenttt.github.io/blog/",
+      description: "プログラミング学習記録ブログです"
+    },
+    {
+      title: "circular_permutaiton",
+      img: img_p5js,
+      src: "https://editor.p5js.org/ebisenttt/collections/g4mGulDBY",
+      description: "円順列を生成するツールです"
+    },
   ]
   return (
     <Section id="works" title="Works">
@@ -42,6 +52,7 @@ const Works = () => {
               title={e.title}
               img={e.img}
               src={e.src}
+              description={e.description}
             />
           ))
         }
