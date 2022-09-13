@@ -5,9 +5,13 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Link } from '.';
 import { Link as Scroll } from 'react-scroll';
 import './HambergerMenu.scss';
+import { SNS } from "src/component/sns/SNS";
+
+type SNSProps = React.ComponentProps<typeof SNS>;
 
 type Props = {
-  links: Link[]
+  links: Link[],
+  sns: SNSProps[],
 }
 
 export const HambergerMenu = (props: Props) => {
@@ -43,18 +47,29 @@ export const HambergerMenu = (props: Props) => {
         onClose={handleClose}
         classes={{ paper: useStyles().menuPaper }}
       >
-        {props.links.map((e, index) => (
-          <MenuItem key={index}>
-            <Scroll
-              to={e.to}
-              smooth={true}
-              duration={600}
-              onClick={handleClose}
-            >
-              <p>{e.value}</p>
-            </Scroll>
-          </MenuItem>
-        ))}
+        {
+          props.links.map((e, index) => (
+            <MenuItem key={index} className="menu-item">
+              <Scroll
+                to={e.to}
+                smooth={true}
+                duration={600}
+                onClick={handleClose}
+              >
+                <p>{e.value}</p>
+              </Scroll>
+            </MenuItem>
+          ))
+        }
+        {
+          props.sns.map((e, index) => (
+            <MenuItem key={index} className="menu-item">
+              <a href={e.link}>
+                {e.icon}
+              </a>
+            </MenuItem>
+          ))
+        }
       </Menu>
     </>
   )
