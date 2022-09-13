@@ -208,7 +208,7 @@ const Contact = () => {
               type={e.type}
               variant='outlined'
               margin='normal'
-              rows={e.rows}
+              minRows={e.rows}
               required
               fullWidth
               multiline
