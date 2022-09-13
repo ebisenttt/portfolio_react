@@ -1,128 +1,130 @@
-@import "./styles/variables";
+@import './styles/variables';
 
 #hero {
-  width: 100%;
-  position: relative;
-  #hero-img {
-    width: 100%;
-  }
-  #hero-text-container {
-    color: $white;
-    position: absolute;
-    text-align: center;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin: 0;
-    padding: 0;
-  }
+	width: 100%;
+	position: relative;
+	#hero-img {
+		width: 100%;
+	}
+	#hero-text-container {
+		color: $white;
+		position: absolute;
+		text-align: center;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		margin: 0;
+		padding: 0;
+	}
 }
 
 .works-container {
-  margin: 24px;
-  display: flex;
-  justify-content: center;
-  .work {
-    width: 320px;
-    max-width: 50vw;
+	width: 100%;
+	margin: 24px;
+	display: flex;
+	justify-content: center;
+	gap: 24px;
+	flex-wrap: wrap;
+	.work {
+		width: 320px;
 
-    .work-img {
-      width: 100%;
-      margin-bottom: 8px;
-    }
-    .work-title {
-      color: $blue;
-      text-align: center;
-    }
-  }
+		.work-img {
+			width: 100%;
+			margin-bottom: 8px;
+		}
+		.work-title {
+			color: $blue;
+			text-align: center;
+		}
+	}
 }
 
 #profile {
-  display: flex;
-  justify-content: space-between;
-  #profile-img-container {
-    #profile-img {
-      max-width: 160px;
-      max-height: 160px;
-    }
-  }
-  #profile-text-container {
-    width: 50%;
-    min-width: $min-width-for-mobile;
-    #profile-text {
-      color: $black;
-      line-height: 200%;
-    }
-  }
+	display: flex;
+	justify-content: space-between;
+	#profile-img-container {
+		#profile-img {
+			max-width: 160px;
+			max-height: 160px;
+		}
+	}
+	#profile-text-container {
+		width: 50%;
+		min-width: $min-width-for-mobile;
+		#profile-text {
+			color: $black;
+			line-height: 200%;
+		}
+	}
 }
 
 #skills {
-  .section-content-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    flex-direction: row;
-    .skill-container {
-      color: $black;
-      text-align: center;
-      img {
-        width: 80px;
-        height: 80px;
-        margin-bottom: 8px;
-        filter: grayscale(90%);
-      }
-    }
-  }
+	.section-content-container {
+		display: flex;
+		justify-content: space-around;
+		flex-wrap: wrap;
+		flex-direction: row;
+		.skill-container {
+			color: $black;
+			text-align: center;
+			img {
+				width: 80px;
+				height: 80px;
+				margin-bottom: 8px;
+				filter: grayscale(90%);
+			}
+		}
+	}
 }
 
 #contact {
-  .section-content-container {
-    form {
-      width: 50%;
-      min-width: 300px;
-      display: flex;
-      color: $black;
-      flex-direction: column;
-      label {
-        display: block;
-        input,
-        textarea {
-          width: 100%;
-          box-sizing: border-box;
-          display: block;
-          border: 1px solid $black;
-          border-radius: 0.3em;
-          padding: 0.5em;
-        }
-        input,
-        textarea,
-        .error-message {
-          margin-bottom: 8px;
-        }
-        .error-message {
-          font-size: 4px;
-        }
-        textarea {
-          resize: none;
-          height: 240px;
-        }
-      }
-      .error-message {
-        color: red;
-      }
-      .MuiButton-root {
-        color: $white;
-        background-color: $blue;
-        &:hover {
-          transition: 0.2s;
-          background-color: $blue;
-          opacity: 0.8;
-        }
-      }
-      .MuiSvgIcon-root {
-        color: $white;
-        margin-right: 8px;
-      }
-    }
-  }
+	.section-content-container {
+		form {
+			width: 50%;
+			min-width: 300px;
+			display: flex;
+			color: $black;
+			flex-direction: column;
+			label {
+				display: block;
+				input,
+				textarea {
+					width: 100%;
+					box-sizing: border-box;
+					display: block;
+					border: 1px solid $black;
+					border-radius: 0.3em;
+					padding: 0.5em;
+				}
+				input,
+				textarea,
+				.error-message {
+					margin-bottom: 8px;
+				}
+				.error-message {
+					font-size: 4px;
+				}
+				textarea {
+					resize: none;
+					height: 240px;
+				}
+			}
+			.error-message {
+				color: red;
+			}
+			.MuiButton-root {
+				color: $white;
+				background-color: $blue;
+				&:hover {
+					transition: 0.2s;
+					background-color: $blue;
+					opacity: 0.8;
+				}
+			}
+			.MuiSvgIcon-root {
+				color: $white;
+				margin-right: 8px;
+			}
+		}
+	}
 }
