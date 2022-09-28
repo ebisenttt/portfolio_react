@@ -14,6 +14,7 @@ import Footer from './component/footer/Footer';
 import TransitionsModal from 'component/modal';
 import img_ebisen_blog from './image/works/ebisen_blog.png';
 import img_p5js from "./image/works/p5js.png";
+import img_kamoku_sentaku from "./image/works/kamoku-sentaku.png";
 import SkillImg from './image/skills';
 
 const Hero = () => (
@@ -41,6 +42,12 @@ const Works = () => {
       src: "https://editor.p5js.org/ebisenttt/collections/g4mGulDBY",
       description: "円順列を生成するツールです"
     },
+    {
+      title: "科目選択フォーム",
+      img: img_kamoku_sentaku,
+      src: "https://script.google.com/macros/s/AKfycbxwfUBZtHgztv444U98vuJGGsBD9ebZ9rUj7yMjML49nkkMWCcU-FsT9YOWvybWspXT/exec",
+      description: "科目選択調査用に作成したフォームです"
+    }
   ]
   return (
     <Section id="works" title="Works">
