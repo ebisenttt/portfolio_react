@@ -46,7 +46,7 @@ const Works = () => {
       title: "科目選択フォーム",
       img: img_kamoku_sentaku,
       src: "https://script.google.com/macros/s/AKfycbxwfUBZtHgztv444U98vuJGGsBD9ebZ9rUj7yMjML49nkkMWCcU-FsT9YOWvybWspXT/exec",
-      descritption: "科目選択調査用に作成したフォームです"
+      description: "科目選択調査用に作成したフォームです"
     }
   ]
   return (
