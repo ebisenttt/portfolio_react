@@ -7,7 +7,7 @@ import img_profile from "./image/profile.png";
 import img_hero from './image/hero.png';
 import Section from './component/section/Section';
 import Work from './component/work/Work';
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextField} from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 import emailjs from 'emailjs-com';
 import Footer from './component/footer/Footer';
