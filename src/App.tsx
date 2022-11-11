@@ -115,6 +115,13 @@ const Skills = () => {
   )
 }
 
+const defaultInputValue = {
+  name: { value: "" },
+  email: { value: "" },
+  subject: { value: "" },
+  content: { value: "" }
+};
+
 const Contact = () => {
   type inputPropsType = {
     label: string,
@@ -129,12 +136,7 @@ const Contact = () => {
     { label: '本文', type: 'text', name: 'content', rows: 5 }
   ]
 
-  const [inputValue, setInputValue] = useState<{ [key: string]: { value: string } }>({
-    name: { value: "" },
-    email: { value: "" },
-    subject: { value: "" },
-    content: { value: "" }
-  })
+  const [inputValue, setInputValue] = useState<{ [key: string]: { value: string } }>(defaultInputValue);
   const [successModalOpened, setSuccessModalOpened] = useState<boolean>(false);
   const [failedModalOpened, setFailedModalOpened] = useState<boolean>(false);
 
@@ -163,6 +165,7 @@ const Contact = () => {
     const templateId = (process.env.REACT_APP_EMAILJS_TEMPLATE_ID as string);
     emailjs.sendForm(serviceId, templateId, e.currentTarget, userId)
       .then((result) => {
+        setInputValue(defaultInputValue);
         openSuccessModal();
         console.log(result, "Success to send contact form.");
       }, (error) => {
