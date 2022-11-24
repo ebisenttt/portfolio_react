@@ -15,6 +15,7 @@ import TransitionsModal from 'component/modal';
 import img_ebisen_blog from './image/works/ebisen_blog.png';
 import img_p5js from "./image/works/p5js.png";
 import img_kamoku_sentaku from "./image/works/kamoku-sentaku.png";
+import img_tt_log from "./image/works/tt_log.png";
 import SkillImg from './image/skills';
 
 const Hero = () => (
@@ -47,6 +48,12 @@ const Works = () => {
       img: img_kamoku_sentaku,
       src: "https://script.google.com/macros/s/AKfycbxwfUBZtHgztv444U98vuJGGsBD9ebZ9rUj7yMjML49nkkMWCcU-FsT9YOWvybWspXT/exec",
       description: "科目選択調査用に作成したフォームです"
+    },
+    {
+      title:"TT Log",
+      img: img_tt_log,
+      src: "https://ttlog-alpha.ebisenttt.net",
+      description: "卓球の戦績を記録・分析するWebアプリです"
     }
   ]
   return (
