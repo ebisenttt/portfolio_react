@@ -15,7 +15,6 @@ import TransitionsModal from "component/modal";
 import img_ebisen_blog from "./image/works/ebisen_blog.png";
 import img_p5js from "./image/works/p5js.png";
 import img_kamoku_sentaku from "./image/works/kamoku-sentaku.png";
-import img_tt_log from "./image/works/tt_log.png";
 import SkillImg from "./image/skills";
 
 const Hero = () => (
